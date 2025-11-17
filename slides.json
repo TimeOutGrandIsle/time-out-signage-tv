@@ -1,20 +1,32 @@
 [
   {
-    "headline": "Welcome to Time Out",
+    "headline": "Seasonal Promotion Active!",
     "subtext": "Schedule your service today. Call (555) 123-4567",
     "image": "images/image1.jpg"
   },
   {
-    "headline": "Easy Beer Control Solutions",
+    "headline": "Easy Weed Control Solutions",
     "subtext": "Keep your outdoor spaces clean and healthy.",
     "image": "images/image2.jpg"
   },
   {
-    "headline": "Lawn Services Available",
+    "headline": "Fertilization Services Available",
     "subtext": "Ensure healthy plants and grass all year.",
     "image": "images/image3.jpg"
+  },
+  {
+    "headline": "Time Out in the late 1960s",
+    "subtext": "",
+    "image": "images/TimeOutLate60s.jpg"
+  },
+  {
+    "headline": "Time Out in 1999",
+    "subtext": "",
+    "image": "images/TimeOut1999.jpg"
+  },
+  {
+    "headline": "Time Out after Hurricane Katrina 2005",
+    "subtext": "",
+    "image": "images/TimeOutKatrina2005.jpg"
   }
 ]
-
-
-
