@@ -1,17 +1,17 @@
 [
   {
-    "headline": "Seasonal Promotion Active!",
-    "subtext": "Schedule your service today. Call (555) 123-4567",
+    "headline": "Welcome to Time Out",
+    "subtext": "Mr. and Mrs. Jones",
     "image": "images/image1.jpg"
   },
   {
-    "headline": "Easy Weed Control Solutions",
-    "subtext": "Keep your outdoor spaces clean and healthy.",
+    "headline": "We hope you enjoy your stay",
+    "subtext": "",
     "image": "images/image2.jpg"
   },
   {
-    "headline": "Fertilization Services Available",
-    "subtext": "Ensure healthy plants and grass all year.",
+    "headline": "Contact us for any questions or issues",
+    "subtext": "601-209-0231",
     "image": "images/image3.jpg"
   },
   {
@@ -30,3 +30,4 @@
     "image": "images/TimeOutKatrina2005.jpg"
   }
 ]
+
