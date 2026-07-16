@@ -5,7 +5,7 @@
     "guestName": "Bill & Lisa Jones",
     "subtext": "We are so glad you are here. Settle in, enjoy the view, and make yourself at home.",
     "image": "images/GISign.png",
-    "fit": "contain"
+    "fit": "cover"
   },
   {
     "type": "standard",
@@ -30,7 +30,8 @@
     "type": "standard",
     "headline": "A Grand Isle Story",
     "subtext": "Time Out has been part of our family memories for generations.",
-    "image": "images/TimeOutLate60s.jpg"
+    "image": "images/TimeOutLate60s.jpg",
+    "fit": "contain"
   },
   {
     "type": "standard",
