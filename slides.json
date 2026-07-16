@@ -2,16 +2,15 @@
   {
     "type": "welcome",
     "headline": "Welcome to Time Out",
-    "guestName": "The Smith Family",
-    "subtext": "We are glad you are here. Settle in, enjoy the Gulf view, and make yourself at home.",
-    "image": "images/image1.jpg",
-    "fit": "contain"
+    "guestName": "Smith Family",
+    "subtext": "We are so glad you are here. Settle in, enjoy the view, and make yourself at home.",
+    "image": "images/image1.jpg"
   },
   {
     "type": "standard",
-    "headline": "You Are on Island Time",
+    "headline": "You are now on Island Time",
     "subtext": "Kick off your shoes, breathe in the Gulf air, and let the day slow down.",
-    "image": "images/image2.jpg"
+    "image": "images/pirate parrot_watercolor.jpg"
   },
   {
     "type": "standard",
@@ -23,8 +22,7 @@
     "type": "standard",
     "headline": "Make Yourself at Home",
     "subtext": "Coffee, porch time, beach walks, and good meals are strongly encouraged.",
-    "image": "images/image1.jpg",
-    "fit": "contain"
+    "image": "images/image1.jpg"
   },
   {
     "type": "standard",
