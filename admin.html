@@ -12,18 +12,49 @@
       <div>
         <p class="eyebrow">Time Out Signage</p>
         <h1>Slide Editor</h1>
-        <p>Update the welcome screen, guest notes, and photo rotation for the TV display.</p>
+        <p>Update the welcome screen, guest notes, and photo rotation, then publish the updated slides directly to GitHub.</p>
       </div>
       <a class="admin-link" href="index.html" target="_blank" rel="noopener">Preview TV</a>
     </header>
+
+    <section class="github-panel" aria-label="GitHub publishing settings">
+      <div>
+        <p class="eyebrow">Publishing</p>
+        <h2>GitHub Settings</h2>
+        <p>Use a fine-grained GitHub token with Contents read/write access for this repository. The token is saved only in this browser.</p>
+      </div>
+      <div class="settings-grid">
+        <label>Owner
+          <input id="github-owner" type="text" placeholder="timeoutgrandisle">
+        </label>
+        <label>Repository
+          <input id="github-repo" type="text" placeholder="time-out-signage-tv">
+        </label>
+        <label>Branch
+          <input id="github-branch" type="text" value="main">
+        </label>
+        <label>File path
+          <input id="github-path" type="text" value="slides.json">
+        </label>
+        <label class="token-field">GitHub token
+          <input id="github-token" type="password" autocomplete="off" placeholder="Fine-grained token">
+        </label>
+      </div>
+    </section>
+
     <section class="admin-toolbar" aria-label="Slide actions">
       <button id="add-slide" type="button">Add Slide</button>
+      <button id="save-local" type="button">Save Preview</button>
+      <button id="publish-github" type="button">Publish to GitHub</button>
       <button id="copy-slides" type="button">Copy JSON</button>
       <button id="download-slides" type="button">Download slides.json</button>
+      <button id="clear-local" type="button">Use Published Slides</button>
     </section>
+
     <p id="status-message" role="status"></p>
     <div id="slides-editor"></div>
   </main>
+
   <script src="admin.js"></script>
 </body>
 </html>

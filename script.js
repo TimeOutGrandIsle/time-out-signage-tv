@@ -1,4 +1,5 @@
 const SLIDES_URL = "slides.json";
+const STORAGE_KEY = "timeOutSignageSlides";
 const DEFAULT_SLIDE_DURATION_MS = 9000;
 const DEFAULT_SLIDES = [
   {
@@ -48,8 +49,24 @@ const headline = document.getElementById("headline");
 const subtext = document.getElementById("subtext");
 const progress = document.getElementById("slide-progress");
 const slideText = document.getElementById("slide-text");
+function getSavedSlides() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : null;
+  } catch (err) {
+    console.warn("Saved slides could not be read", err);
+    return null;
+  }
+}
+
 async function loadSlides() {
   try {
+    const savedSlides = getSavedSlides();
+    if (savedSlides) {
+      slides = normalizeSlides(savedSlides);
+      showSlide(0);
+      return;
+    }
     const resp = await fetch(SLIDES_URL + "?t=" + Date.now(), { cache: "no-store" });
     if (!resp.ok) throw new Error("Could not load slides: " + resp.status);
     const data = await resp.json();
