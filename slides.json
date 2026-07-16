@@ -2,7 +2,7 @@
   {
     "type": "welcome",
     "headline": "Welcome to Time Out",
-    "guestName": "Smith Family",
+    "guestName": "Bill & Lisa Jones",
     "subtext": "We are so glad you are here. Settle in, enjoy the view, and make yourself at home.",
     "image": "images/GISign.png",
     "fit": "contain"
