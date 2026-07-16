@@ -8,6 +8,7 @@ const slideImage = document.getElementById("slide-image");
 const headline = document.getElementById("headline");
 const subtext = document.getElementById("subtext");
 const progress = document.getElementById("slide-progress");
+const slideText = document.getElementById("slide-text");
 async function loadSlides() {
   try {
     const resp = await fetch(SLIDES_URL + "?t=" + Date.now(), { cache: "no-store" });
@@ -23,6 +24,11 @@ async function loadSlides() {
     slideImage.classList.remove("is-visible");
   }
 }
+function escapeHtml(value = "") {
+  const replacements = { "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" };
+  return String(value).replace(/[&<>'"]/g, char => replacements[char]);
+}
+
 function setSmartCrop(imagePath) {
   const img = new Image();
   img.onload = () => {
@@ -49,8 +55,13 @@ function showSlide(index) {
     slideImage.src = slide.image || "images/image1.jpg";
     slideImage.alt = slide.headline || "Time Out slide";
     setSmartCrop(slideImage.src);
+    slideText.classList.toggle("welcome-slide", slide.type === "welcome");
     headline.textContent = slide.headline || "Time Out Grand Isle";
-    subtext.textContent = slide.subtext || "";
+    if (slide.type === "welcome" && slide.guestName) {
+      subtext.innerHTML = '<span class="guest-name">' + escapeHtml(slide.guestName) + '</span><span class="welcome-note">' + escapeHtml(slide.subtext || "We are so glad you are here.") + '</span>';
+    } else {
+      subtext.textContent = slide.subtext || "";
+    }
     slideImage.classList.add("is-visible");
     restartProgress(duration);
   }, 350);

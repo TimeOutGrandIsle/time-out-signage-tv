@@ -31,10 +31,15 @@ function renderSlides() {
     const title = escapeHtml(slide.headline || "Slide " + (index + 1));
     const sub = escapeHtml(slide.subtext || "");
     const image = escapeHtml(slide.image || "");
+    const guestName = escapeHtml(slide.guestName || "");
+    const type = escapeHtml(slide.type || "standard");
+    const guestNameField = slide.type === "welcome" ? '<label for="guest-' + index + '">Guest name</label><input id="guest-' + index + '" type="text" value="' + guestName + '" data-index="' + index + '" data-field="guestName" placeholder="The Smith Family">' : '';
     card.innerHTML = '<div class="slide-preview" style="background-image: url(&quot;' + image + '&quot;)"><div class="slide-preview-text"><strong>' + title + '</strong><span>' + sub + '</span></div></div>' +
       '<div class="slide-form">' +
+      '<input type="hidden" value="' + type + '" data-index="' + index + '" data-field="type">' +
       '<label for="headline-' + index + '">Headline</label><input id="headline-' + index + '" type="text" value="' + title + '" data-index="' + index + '" data-field="headline">' +
-      '<label for="subtext-' + index + '">Subtext</label><textarea id="subtext-' + index + '" data-index="' + index + '" data-field="subtext">' + sub + '</textarea>' +
+      guestNameField +
+      '<label for="subtext-' + index + '">Message</label><textarea id="subtext-' + index + '" data-index="' + index + '" data-field="subtext">' + sub + '</textarea>' +
       '<label for="image-' + index + '">Image path or URL</label><input id="image-' + index + '" type="text" value="' + image + '" data-index="' + index + '" data-field="image">' +
       '<div class="slide-actions"><button class="secondary" type="button" data-action="up" data-index="' + index + '">Move Up</button><button class="secondary" type="button" data-action="down" data-index="' + index + '">Move Down</button><button class="delete" type="button" data-action="delete" data-index="' + index + '">Delete</button></div></div>';
     editor.appendChild(card);
@@ -60,7 +65,7 @@ editor.addEventListener("click", event => {
   setStatus("Slide order updated.");
 });
 document.getElementById("add-slide").addEventListener("click", () => {
-  slides.push({ headline: "New Time Out Slide", subtext: "Beachfront Grand Isle getaway", image: "images/image1.jpg" });
+  slides.push({ type: "standard", headline: "New Guest Note", subtext: "A warm message for your guests", image: "images/image1.jpg" });
   renderSlides();
   setStatus("Slide added.");
 });

@@ -23,6 +23,9 @@ body { font-family: Arial, Helvetica, sans-serif; color: var(--ink); background:
 #location-label { margin: 0 0 1rem; color: #ffd8bd; font-size: clamp(1.1rem, 1.6vw, 1.7rem); font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; text-shadow: 0 4px 18px rgba(0, 0, 0, 0.48); }
 #slide-text h1 { margin: 0; font-size: clamp(4rem, 8vw, 9rem); line-height: 0.95; text-shadow: 0 8px 28px rgba(0, 0, 0, 0.62); }
 #slide-text p#subtext { max-width: 760px; margin: 1.2rem 0 0; font-size: clamp(1.8rem, 3vw, 3.4rem); line-height: 1.15; text-shadow: 0 6px 22px rgba(0, 0, 0, 0.58); }
+#slide-text.welcome-slide { width: min(980px, 78vw); }
+.guest-name { display: block; margin: 0.2rem 0 0.9rem; color: #ffd8bd; font-size: clamp(3rem, 6vw, 6.6rem); font-weight: 900; line-height: 0.95; }
+.welcome-note { display: block; max-width: 780px; font-size: clamp(1.7rem, 2.6vw, 3rem); }
 #tv-footer { position: absolute; right: 4vw; bottom: 4vh; z-index: 3; display: inline-flex; align-items: center; gap: 0.8rem; min-height: 70px; padding: 0.75rem 1rem; color: var(--white); font-size: clamp(1rem, 1.35vw, 1.45rem); font-weight: 800; background: rgba(255, 253, 246, 0.16); border: 1px solid rgba(255, 253, 246, 0.32); border-radius: 8px; backdrop-filter: blur(8px); }
 #logo { width: 54px; height: 54px; object-fit: contain; }
 #slide-progress { position: absolute; left: 0; bottom: 0; z-index: 4; width: 0%; height: 8px; background: linear-gradient(90deg, var(--sun), #ffd8bd); }

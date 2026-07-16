@@ -1,32 +1,39 @@
 [
   {
+    "type": "welcome",
     "headline": "Welcome to Time Out",
-    "subtext": "Your beachfront Grand Isle getaway",
+    "guestName": "The Smith Family",
+    "subtext": "We are so glad you are here. Settle in, enjoy the view, and make yourself at home.",
     "image": "images/image1.jpg"
   },
   {
-    "headline": "Enjoy the Gulf View",
-    "subtext": "Relax, unplug, and settle into island time",
+    "type": "standard",
+    "headline": "You Are on Island Time",
+    "subtext": "Kick off your shoes, breathe in the Gulf air, and let the day slow down.",
     "image": "images/image2.jpg"
   },
   {
+    "type": "standard",
     "headline": "Need Anything?",
-    "subtext": "Call or text 601-209-0231",
+    "subtext": "Call or text 601-209-0231. We want your stay to feel easy.",
     "image": "images/image3.jpg"
   },
   {
-    "headline": "Time Out in the Late 1960s",
-    "subtext": "A Grand Isle story generations in the making",
+    "type": "standard",
+    "headline": "Make Yourself at Home",
+    "subtext": "Coffee, porch time, beach walks, and good meals are strongly encouraged.",
+    "image": "images/image1.jpg"
+  },
+  {
+    "type": "standard",
+    "headline": "A Grand Isle Story",
+    "subtext": "Time Out has been part of our family memories for generations.",
     "image": "images/TimeOutLate60s.jpg"
   },
   {
-    "headline": "Time Out in 1999",
-    "subtext": "Past memories, future beach days",
+    "type": "standard",
+    "headline": "Thank You for Staying",
+    "subtext": "We hope Time Out becomes part of your favorite beach memories too.",
     "image": "images/TimeOut1999.jpg"
-  },
-  {
-    "headline": "After Hurricane Katrina 2005",
-    "subtext": "Built on family, resilience, and love for the island",
-    "image": "images/TimeOutKatrina2005.jpg"
   }
 ]
