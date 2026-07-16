@@ -1,74 +1,61 @@
 const SLIDES_URL = "slides.json";
-const SLIDE_DURATION_MS = 8000;
-const REFRESH_INTERVAL_MS = 5 * 60 * 1000; // reload page every 5 minutes
-
+const DEFAULT_SLIDE_DURATION_MS = 9000;
+const REFRESH_INTERVAL_MS = 5 * 60 * 1000;
 let slides = [];
 let currentIndex = 0;
-let slideImage = document.getElementById("slide-image");
-
+let slideTimer = null;
+const slideImage = document.getElementById("slide-image");
+const headline = document.getElementById("headline");
+const subtext = document.getElementById("subtext");
+const progress = document.getElementById("slide-progress");
 async function loadSlides() {
   try {
     const resp = await fetch(SLIDES_URL + "?t=" + Date.now(), { cache: "no-store" });
-    slides = await resp.json();
-    if (slides.length > 0) showSlide(0);
+    if (!resp.ok) throw new Error("Could not load slides: " + resp.status);
+    const data = await resp.json();
+    slides = Array.isArray(data) ? data.filter(slide => slide.image || slide.headline || slide.subtext) : [];
+    if (slides.length === 0) throw new Error("No slides found");
+    showSlide(0);
   } catch (err) {
     console.error(err);
-    document.getElementById("headline").textContent = "Error loading slides";
-    document.getElementById("subtext").textContent = "";
+    headline.textContent = "Time Out Grand Isle";
+    subtext.textContent = "Slides are unavailable right now.";
+    slideImage.classList.remove("is-visible");
   }
 }
-
+function setSmartCrop(imagePath) {
+  const img = new Image();
+  img.onload = () => {
+    const aspect = img.width / img.height;
+    if (aspect >= 1.3) slideImage.style.objectPosition = "center";
+    else if (aspect >= 0.8) slideImage.style.objectPosition = "center 32%";
+    else slideImage.style.objectPosition = "center top";
+  };
+  img.src = imagePath;
+}
+function restartProgress(duration) {
+  progress.style.setProperty("--slide-duration", duration + "ms");
+  progress.classList.remove("is-running");
+  void progress.offsetWidth;
+  progress.classList.add("is-running");
+}
 function showSlide(index) {
   const slide = slides[index];
   if (!slide) return;
-
-  // Fade out
-  slideImage.style.opacity = 0;
-
+  clearTimeout(slideTimer);
+  const duration = Number(slide.durationMs) || DEFAULT_SLIDE_DURATION_MS;
+  slideImage.classList.remove("is-visible");
   setTimeout(() => {
-    slideImage.src = slide.image;
-
-    // AUTO SMART CROP USING ASPECT RATIO
-    const img = new Image();
-    img.src = slide.image;
-
-    img.onload = () => {
-      const aspect = img.width / img.height;
-
-      // Very wide landscape (e.g., 21:9 panoramas)
-      if (aspect > 2.2) {
-        slideImage.style.objectPosition = "center";
-      }
-      // Standard landscape 16:9 or wider → center crop is best
-      else if (aspect >= 1.3) {
-        slideImage.style.objectPosition = "center";
-      }
-      // Slightly tall images (4:5, 3:4, phone photos)
-      else if (aspect >= 0.8) {
-        slideImage.style.objectPosition = "center 30%"; // keep faces visible
-      }
-      // Very tall images (posters, portraits)
-      else {
-        slideImage.style.objectPosition = "center top"; // top is usually important
-      }
-    };
-
-    // Update text
-    document.getElementById("headline").textContent = slide.headline;
-    document.getElementById("subtext").textContent = slide.subtext;
-
-    // Fade in
-    slideImage.style.opacity = 1;
-
-  }, 500);
-
-  // Cycle to next
+    slideImage.src = slide.image || "images/image1.jpg";
+    slideImage.alt = slide.headline || "Time Out slide";
+    setSmartCrop(slideImage.src);
+    headline.textContent = slide.headline || "Time Out Grand Isle";
+    subtext.textContent = slide.subtext || "";
+    slideImage.classList.add("is-visible");
+    restartProgress(duration);
+  }, 350);
   currentIndex = (index + 1) % slides.length;
-  setTimeout(() => showSlide(currentIndex), SLIDE_DURATION_MS);
+  slideTimer = setTimeout(() => showSlide(currentIndex), duration);
 }
-
-// Auto-refresh every 5 minutes
 setInterval(() => location.reload(), REFRESH_INTERVAL_MS);
-
-// Start
 loadSlides();

@@ -1,33 +1,32 @@
 [
   {
     "headline": "Welcome to Time Out",
-    "subtext": "Mr. and Mrs. Jones",
+    "subtext": "Your beachfront Grand Isle getaway",
     "image": "images/image1.jpg"
   },
   {
-    "headline": "We hope you enjoy your stay",
-    "subtext": "",
+    "headline": "Enjoy the Gulf View",
+    "subtext": "Relax, unplug, and settle into island time",
     "image": "images/image2.jpg"
   },
   {
-    "headline": "Contact us for any questions or issues",
-    "subtext": "601-209-0231",
+    "headline": "Need Anything?",
+    "subtext": "Call or text 601-209-0231",
     "image": "images/image3.jpg"
   },
   {
-    "headline": "Time Out in the late 1960s",
-    "subtext": "",
+    "headline": "Time Out in the Late 1960s",
+    "subtext": "A Grand Isle story generations in the making",
     "image": "images/TimeOutLate60s.jpg"
   },
   {
     "headline": "Time Out in 1999",
-    "subtext": "",
+    "subtext": "Past memories, future beach days",
     "image": "images/TimeOut1999.jpg"
   },
   {
-    "headline": "Time Out after Hurricane Katrina 2005",
-    "subtext": "",
+    "headline": "After Hurricane Katrina 2005",
+    "subtext": "Built on family, resilience, and love for the island",
     "image": "images/TimeOutKatrina2005.jpg"
   }
 ]
-
