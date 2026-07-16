@@ -1,5 +1,44 @@
 const SLIDES_URL = "slides.json";
 const DEFAULT_SLIDE_DURATION_MS = 9000;
+const DEFAULT_SLIDES = [
+  {
+    type: "welcome",
+    headline: "Welcome to Time Out",
+    guestName: "The Smith Family",
+    subtext: "We are so glad you are here. Settle in, enjoy the view, and make yourself at home.",
+    image: "images/image1.jpg"
+  },
+  {
+    type: "standard",
+    headline: "You Are on Island Time",
+    subtext: "Kick off your shoes, breathe in the Gulf air, and let the day slow down.",
+    image: "images/image2.jpg"
+  },
+  {
+    type: "standard",
+    headline: "Need Anything?",
+    subtext: "Call or text 601-209-0231. We want your stay to feel easy.",
+    image: "images/image3.jpg"
+  },
+  {
+    type: "standard",
+    headline: "Make Yourself at Home",
+    subtext: "Coffee, porch time, beach walks, and good meals are strongly encouraged.",
+    image: "images/image1.jpg"
+  },
+  {
+    type: "standard",
+    headline: "A Grand Isle Story",
+    subtext: "Time Out has been part of our family memories for generations.",
+    image: "images/TimeOutLate60s.jpg"
+  },
+  {
+    type: "standard",
+    headline: "Thank You for Staying",
+    subtext: "We hope Time Out becomes part of your favorite beach memories too.",
+    image: "images/TimeOut1999.jpg"
+  }
+];
 const REFRESH_INTERVAL_MS = 5 * 60 * 1000;
 let slides = [];
 let currentIndex = 0;
@@ -14,16 +53,22 @@ async function loadSlides() {
     const resp = await fetch(SLIDES_URL + "?t=" + Date.now(), { cache: "no-store" });
     if (!resp.ok) throw new Error("Could not load slides: " + resp.status);
     const data = await resp.json();
-    slides = Array.isArray(data) ? data.filter(slide => slide.image || slide.headline || slide.subtext) : [];
+    slides = normalizeSlides(data);
     if (slides.length === 0) throw new Error("No slides found");
     showSlide(0);
   } catch (err) {
     console.error(err);
-    headline.textContent = "Time Out Grand Isle";
-    subtext.textContent = "Slides are unavailable right now.";
-    slideImage.classList.remove("is-visible");
+    slides = normalizeSlides(DEFAULT_SLIDES);
+    showSlide(0);
   }
 }
+function normalizeSlides(data) {
+  const source = Array.isArray(data) ? data : DEFAULT_SLIDES;
+  return source
+    .filter(slide => slide.image || slide.headline || slide.subtext || slide.guestName)
+    .map((slide, index) => ({ ...slide, type: index === 0 ? "welcome" : (slide.type || "standard") }));
+}
+
 function escapeHtml(value = "") {
   const replacements = { "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" };
   return String(value).replace(/[&<>'"]/g, char => replacements[char]);

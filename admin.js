@@ -1,20 +1,64 @@
 let slides = [];
 const editor = document.getElementById("slides-editor");
 const statusMessage = document.getElementById("status-message");
+const DEFAULT_SLIDES = [
+  {
+    type: "welcome",
+    headline: "Welcome to Time Out",
+    guestName: "The Smith Family",
+    subtext: "We are so glad you are here. Settle in, enjoy the view, and make yourself at home.",
+    image: "images/image1.jpg"
+  },
+  {
+    type: "standard",
+    headline: "You Are on Island Time",
+    subtext: "Kick off your shoes, breathe in the Gulf air, and let the day slow down.",
+    image: "images/image2.jpg"
+  },
+  {
+    type: "standard",
+    headline: "Need Anything?",
+    subtext: "Call or text 601-209-0231. We want your stay to feel easy.",
+    image: "images/image3.jpg"
+  },
+  {
+    type: "standard",
+    headline: "Make Yourself at Home",
+    subtext: "Coffee, porch time, beach walks, and good meals are strongly encouraged.",
+    image: "images/image1.jpg"
+  },
+  {
+    type: "standard",
+    headline: "A Grand Isle Story",
+    subtext: "Time Out has been part of our family memories for generations.",
+    image: "images/TimeOutLate60s.jpg"
+  },
+  {
+    type: "standard",
+    headline: "Thank You for Staying",
+    subtext: "We hope Time Out becomes part of your favorite beach memories too.",
+    image: "images/TimeOut1999.jpg"
+  }
+];
 async function loadSlides() {
   try {
     const resp = await fetch("slides.json?t=" + Date.now(), { cache: "no-store" });
     if (!resp.ok) throw new Error("Could not load slides: " + resp.status);
-    slides = await resp.json();
+    slides = normalizeSlides(await resp.json());
     renderSlides();
     setStatus("Slides loaded.");
   } catch (err) {
     console.error(err);
-    setStatus("Could not load slides.json. You can still add slides manually.", true);
-    slides = [];
+    slides = normalizeSlides(DEFAULT_SLIDES);
     renderSlides();
+    setStatus("Using the built-in sample slides. Download slides.json after editing.", true);
   }
 }
+function normalizeSlides(data) {
+  const source = Array.isArray(data) ? data : DEFAULT_SLIDES;
+  return source.map((slide, index) => ({ ...slide, type: index === 0 ? "welcome" : (slide.type || "standard") }));
+}
+
 function setStatus(message, isError = false) {
   statusMessage.textContent = message;
   statusMessage.style.color = isError ? "#aa4b3e" : "#0b6577";
@@ -33,7 +77,7 @@ function renderSlides() {
     const image = escapeHtml(slide.image || "");
     const guestName = escapeHtml(slide.guestName || "");
     const type = escapeHtml(slide.type || "standard");
-    const guestNameField = slide.type === "welcome" ? '<label for="guest-' + index + '">Guest name</label><input id="guest-' + index + '" type="text" value="' + guestName + '" data-index="' + index + '" data-field="guestName" placeholder="The Smith Family">' : '';
+    const guestNameField = (slide.type === "welcome" || index === 0) ? '<label for="guest-' + index + '">Customer / Guest name</label><input id="guest-' + index + '" type="text" value="' + guestName + '" data-index="' + index + '" data-field="guestName" placeholder="The Smith Family">' : '';
     card.innerHTML = '<div class="slide-preview" style="background-image: url(&quot;' + image + '&quot;)"><div class="slide-preview-text"><strong>' + title + '</strong><span>' + sub + '</span></div></div>' +
       '<div class="slide-form">' +
       '<input type="hidden" value="' + type + '" data-index="' + index + '" data-field="type">' +
