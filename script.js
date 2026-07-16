@@ -49,6 +49,7 @@ const headline = document.getElementById("headline");
 const subtext = document.getElementById("subtext");
 const progress = document.getElementById("slide-progress");
 const slideText = document.getElementById("slide-text");
+const footerWelcome = document.getElementById("footer-welcome");
 function getSavedSlides() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -79,6 +80,16 @@ async function loadSlides() {
     showSlide(0);
   }
 }
+function getGuestName() {
+  const welcomeSlide = slides.find(slide => slide.type === "welcome" && slide.guestName);
+  return welcomeSlide ? welcomeSlide.guestName.replace(/^The\s+/i, "") : "";
+}
+
+function updateFooterWelcome() {
+  const guestName = getGuestName();
+  footerWelcome.textContent = guestName ? "Welcome, " + guestName : "Welcome to Time Out";
+}
+
 function normalizeSlides(data) {
   const source = Array.isArray(data) ? data : DEFAULT_SLIDES;
   return source
@@ -111,6 +122,7 @@ function showSlide(index) {
   const slide = slides[index];
   if (!slide) return;
   clearTimeout(slideTimer);
+  updateFooterWelcome();
   const duration = Number(slide.durationMs) || DEFAULT_SLIDE_DURATION_MS;
   slideImage.classList.remove("is-visible");
   setTimeout(() => {
