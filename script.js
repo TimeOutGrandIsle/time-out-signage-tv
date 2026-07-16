@@ -102,6 +102,11 @@ function escapeHtml(value = "") {
   return String(value).replace(/[&<>'"]/g, char => replacements[char]);
 }
 
+function applyImageFit(slide) {
+  slideImage.classList.toggle("fit-contain", slide.fit === "contain");
+  slideImage.classList.toggle("fit-cover", slide.fit !== "contain");
+}
+
 function setSmartCrop(imagePath) {
   const img = new Image();
   img.onload = () => {
@@ -128,7 +133,12 @@ function showSlide(index) {
   setTimeout(() => {
     slideImage.src = slide.image || "images/image1.jpg";
     slideImage.alt = slide.headline || "Time Out slide";
-    setSmartCrop(slideImage.src);
+    applyImageFit(slide);
+    if (slide.fit === "contain") {
+      slideImage.style.objectPosition = "center";
+    } else {
+      setSmartCrop(slideImage.src);
+    }
     slideText.classList.toggle("welcome-slide", slide.type === "welcome");
     headline.textContent = slide.headline || "Time Out Grand Isle";
     if (slide.type === "welcome" && slide.guestName) {

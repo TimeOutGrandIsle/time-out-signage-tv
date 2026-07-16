@@ -123,6 +123,7 @@ function renderSlides() {
     const image = escapeHtml(slide.image || "");
     const guestName = escapeHtml(slide.guestName || "");
     const type = escapeHtml(slide.type || "standard");
+    const fit = escapeHtml(slide.fit || "cover");
     const guestNameField = (slide.type === "welcome" || index === 0)
       ? '<label for="guest-' + index + '">Customer / Guest name</label><input id="guest-' + index + '" type="text" value="' + guestName + '" data-index="' + index + '" data-field="guestName" placeholder="The Smith Family">'
       : '';
@@ -134,6 +135,7 @@ function renderSlides() {
       guestNameField +
       '<label for="subtext-' + index + '">Message</label><textarea id="subtext-' + index + '" data-index="' + index + '" data-field="subtext">' + sub + '</textarea>' +
       '<label for="image-' + index + '">Image path or URL</label><input id="image-' + index + '" type="text" value="' + image + '" data-index="' + index + '" data-field="image">' +
+      '<label for="fit-' + index + '">Image fit</label><select id="fit-' + index + '" data-index="' + index + '" data-field="fit"><option value="cover"' + (fit === "cover" ? " selected" : "") + '>Fill screen / crop</option><option value="contain"' + (fit === "contain" ? " selected" : "") + '>Show whole photo</option></select>' +
       '<div class="slide-actions"><button class="secondary" type="button" data-action="up" data-index="' + index + '">Move Up</button><button class="secondary" type="button" data-action="down" data-index="' + index + '">Move Down</button><button class="delete" type="button" data-action="delete" data-index="' + index + '">Delete</button></div></div>';
     editor.appendChild(card);
   });
@@ -211,7 +213,7 @@ async function publishToGitHub() {
 }
 
 document.getElementById("add-slide").addEventListener("click", () => {
-  slides.push({ type: "standard", headline: "New Guest Note", subtext: "A warm message for your guests", image: "images/image1.jpg" });
+  slides.push({ type: "standard", headline: "New Guest Note", subtext: "A warm message for your guests", image: "images/image1.jpg", fit: "contain" });
   renderSlides();
   setStatus("Slide added. Click Publish to GitHub when you are ready.");
 });

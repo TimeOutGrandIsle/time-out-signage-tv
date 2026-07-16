@@ -18,6 +18,8 @@ body { font-family: Arial, Helvetica, sans-serif; color: var(--ink); background:
 #slideshow-container { position: relative; width: 100vw; height: 100vh; overflow: hidden; background: radial-gradient(circle at 20% 10%, rgba(124, 201, 215, 0.35), transparent 32%), #061a20; }
 #slide-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transform: scale(1.035); transition: opacity 1s ease-in-out, transform 8s ease-out; }
 #slide-image.is-visible { opacity: 1; transform: scale(1); }
+#slide-image.fit-contain { object-fit: contain; background: rgba(6, 26, 32, 0.88); }
+#slide-image.fit-cover { object-fit: cover; }
 #slide-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(6, 26, 32, 0.78), rgba(6, 26, 32, 0.32) 48%, rgba(6, 26, 32, 0.18)), linear-gradient(0deg, rgba(6, 26, 32, 0.48), transparent 42%); }
 #slide-text { position: absolute; left: 6vw; bottom: 13vh; z-index: 2; width: min(920px, 74vw); color: var(--white); text-align: left; }
 #location-label { margin: 0 0 1rem; color: #ffd8bd; font-size: clamp(1.1rem, 1.6vw, 1.7rem); font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; text-shadow: 0 4px 18px rgba(0, 0, 0, 0.48); }
@@ -51,7 +53,7 @@ body { font-family: Arial, Helvetica, sans-serif; color: var(--ink); background:
 .slide-preview-text span { display: block; margin-top: 0.35rem; color: #fce4cd; }
 .slide-form { padding: 1rem; }
 .slide-form label { display: block; margin-top: 0.85rem; color: var(--muted); font-size: 0.9rem; font-weight: 800; }
-.slide-form input, .slide-form textarea { width: 100%; margin-top: 0.35rem; padding: 0.72rem; color: var(--ink); font: inherit; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+.slide-form input, .slide-form textarea, .slide-form select { width: 100%; margin-top: 0.35rem; padding: 0.72rem; color: var(--ink); font: inherit; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
 .slide-form textarea { min-height: 74px; resize: vertical; }
 .slide-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
 .slide-actions button.delete { background: #aa4b3e; }

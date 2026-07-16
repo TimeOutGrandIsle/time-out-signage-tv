@@ -4,7 +4,8 @@
     "headline": "Welcome to Time Out",
     "guestName": "The Smith Family",
     "subtext": "We are glad you are here. Settle in, enjoy the Gulf view, and make yourself at home.",
-    "image": "images/image1.jpg"
+    "image": "images/image1.jpg",
+    "fit": "contain"
   },
   {
     "type": "standard",
@@ -22,7 +23,8 @@
     "type": "standard",
     "headline": "Make Yourself at Home",
     "subtext": "Coffee, porch time, beach walks, and good meals are strongly encouraged.",
-    "image": "images/image1.jpg"
+    "image": "images/image1.jpg",
+    "fit": "contain"
   },
   {
     "type": "standard",
